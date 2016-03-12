@@ -7,6 +7,7 @@ package spring.boot.nomaven;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,14 +23,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/")
 public class ControladorMensaje {
     @Autowired ComportamientoMensaje miServicioMensaje;
+    @Inject ServicioMensajesMongo servicioMonguito;
     
     @CrossOrigin
     @RequestMapping(value="/mensaje", method=RequestMethod.GET, headers = {"Accept=application/json"})
     @ResponseBody String obtenerTodos()throws Exception{
      
-        ObjectMapper maper=new ObjectMapper();
-    ArrayList<Mensaje> mensajitos=   miServicioMensaje.leerTodosLosMensajes();
-    return maper.writeValueAsString(mensajitos);
+    // ObjectMapper maper=new ObjectMapper();
+    //ArrayList<Mensaje> mensajitos=   miServicioMensaje.leerTodosLosMensajes();
+   // return maper.writeValueAsString(mensajitos);
+     MensajeMongutio mensa=new MensajeMongutio();
+               mensa.setTitulo("primer moguito");
+               mensa.setCuerpo("ESte es un mensajito en mongo");
+          //Viene lo mejor!!!! guarar en mongo
+          servicioMonguito.agregarMensaje(mensa);
+          
+   return "Mensaje de mongo guardado con exitoooo!!";
     }
+    
+    
+    
     
 }
