@@ -21,7 +21,7 @@ public class ConfigurarServicios {
     
     @Bean
     public ComportamientoMensaje miServicioMensaje(){
-        return new MensajeSerializado();
+        return new MensajeMysql();
     }
             
     

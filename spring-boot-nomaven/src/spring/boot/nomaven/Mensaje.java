@@ -9,7 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
+
 
 /**
  *
@@ -18,6 +20,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="MENSAJE")
 public class Mensaje {
+    
+   
+  
     @Id
     @GeneratedValue
     @Column(name="id_mensaje")        
@@ -28,6 +33,8 @@ public class Mensaje {
     
     @Column(name="cuerpo")
     private String cuerpo;
+
+    
 
     @Override
     public String toString() {
@@ -69,6 +76,10 @@ public class Mensaje {
     public void setCuerpo(String cuerpo) {
         this.cuerpo = cuerpo;
     }
+
+  
+
+   
 
     
 }

@@ -6,6 +6,7 @@
 package spring.boot.nomaven;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,5 +14,5 @@ import java.util.ArrayList;
  */
 public interface ComportamientoMensaje {
     
-  ArrayList<Mensaje>    leerTodosLosMensajes();
+  List<Mensaje>    leerTodosLosMensajes();
 }

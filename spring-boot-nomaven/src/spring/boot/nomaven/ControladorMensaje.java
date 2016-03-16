@@ -7,6 +7,7 @@ package spring.boot.nomaven;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,23 +24,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/")
 public class ControladorMensaje {
     @Autowired ComportamientoMensaje miServicioMensaje;
-    @Inject ServicioMensajesMongo servicioMonguito;
+    @Inject ServicioMensajesMongo mensajesMongo;
+ 
     
     @CrossOrigin
     @RequestMapping(value="/mensaje", method=RequestMethod.GET, headers = {"Accept=application/json"})
     @ResponseBody String obtenerTodos()throws Exception{
      
-    // ObjectMapper maper=new ObjectMapper();
-    //ArrayList<Mensaje> mensajitos=   miServicioMensaje.leerTodosLosMensajes();
-   // return maper.writeValueAsString(mensajitos);
-     MensajeMongutio mensa=new MensajeMongutio();
-               mensa.setTitulo("primer moguito");
-               mensa.setCuerpo("ESte es un mensajito en mongo");
-          //Viene lo mejor!!!! guarar en mongo
-          servicioMonguito.agregarMensaje(mensa);
-          
-   return "Mensaje de mongo guardado con exitoooo!!";
+     ObjectMapper maper=new ObjectMapper();
+   List<Mensaje> mensajitos=   miServicioMensaje.leerTodosLosMensajes();
+   return maper.writeValueAsString(mensajitos);
+   
     }
+    
+    
+       @CrossOrigin
+    @RequestMapping(value="/mensajemongo", method=RequestMethod.GET, headers = {"Accept=text/html"})
+    @ResponseBody String guardar()throws Exception{
+     MensajeMongutio m=new MensajeMongutio();
+     m.setCuerpo("yaaa");
+     m.setTitulo("malo");
+    mensajesMongo.agregarMensaje(m);
+     return "Guardado con exito";
+    }
+    
     
     
     

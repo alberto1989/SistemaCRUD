@@ -6,24 +6,38 @@
 package spring.boot.nomaven;
 
 import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
 import org.springframework.data.annotation.Id;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author campitos
  */
+@Repository
 public class MensajeMongutio extends Mensaje{
+   
+   
+@Id
+private String idd;
 
-    @Id
-    private String idMensaje;
-
-    public String getIdMensaje() {
-        return idMensaje;
+    /**
+     * @return the id
+     */
+    public String getIdd() {
+        return idd;
     }
 
-    public void setIdMensaje(String idMensaje) {
-        this.idMensaje = idMensaje;
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.idd = id;
     }
- 
+
     
+
+   
+
 }

@@ -6,6 +6,8 @@
 package spring.boot.nomaven;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,9 +16,16 @@ import java.util.ArrayList;
 public class MensajeMysql extends Mensaje implements ComportamientoMensaje{
 
     @Override
-    public ArrayList<Mensaje> leerTodosLosMensajes() {
-            //  DAOMensaje
-            return null;
+    public ArrayList<Mensaje> leerTodosLosMensajes(){
+           DAOMensaje dao=new DAOMensaje();
+            ArrayList<Mensaje> mensajes=new ArrayList<Mensaje>();
+        try {
+         mensajes=dao.buscarTodos();
+        } catch (Exception ex) {
+     System.out.println(ex.getMessage());
+        }
+          return mensajes ;
+          
     }
     
 }
