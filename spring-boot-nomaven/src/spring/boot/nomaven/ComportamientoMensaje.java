@@ -15,4 +15,5 @@ import java.util.List;
 public interface ComportamientoMensaje {
     
   List<Mensaje>    leerTodosLosMensajes();
+  public void guardar(Mensaje m);
 }

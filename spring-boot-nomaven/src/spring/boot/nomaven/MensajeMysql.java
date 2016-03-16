@@ -27,5 +27,15 @@ public class MensajeMysql extends Mensaje implements ComportamientoMensaje{
           return mensajes ;
           
     }
+
+    @Override
+    public void guardar(Mensaje m) {
+        DAOMensaje dao = new DAOMensaje();
+        try {
+            dao.guardar(m);
+        } catch (Exception ex) {
+            Logger.getLogger(MensajeMysql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

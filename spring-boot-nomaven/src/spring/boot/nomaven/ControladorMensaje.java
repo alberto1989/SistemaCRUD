@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,12 +43,23 @@ public class ControladorMensaje {
     @RequestMapping(value="/mensajemongo", method=RequestMethod.GET, headers = {"Accept=text/html"})
     @ResponseBody String guardar()throws Exception{
      MensajeMongutio m=new MensajeMongutio();
-     m.setCuerpo("yaaa");
-     m.setTitulo("malo");
+     m.setCuerpo("hoy");
+     m.setTitulo("hizo calor");
     mensajesMongo.agregarMensaje(m);
      return "Guardado con exito";
     }
-    
+     @CrossOrigin
+    @RequestMapping(value = "/mensaje/{titulo}/{cuerpo}",
+            method = RequestMethod.POST, headers = {"Accept=text/html"})
+    @ResponseBody String guardarMensaje(@PathVariable String titulo,
+            @PathVariable String cuerpo) throws Exception{
+        Mensaje m = new Mensaje();
+        m.setTitulo(titulo);
+        m.setCuerpo(cuerpo);
+        miServicioMensaje.guardar(m);
+        return "Mensaje guardado con exito";
+        
+    }
     
     
     

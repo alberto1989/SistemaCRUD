@@ -28,5 +28,10 @@ public class MensajeSerializado extends Mensaje implements ComportamientoMensaje
         mensajitos.add(m2);
         return mensajitos;
     }
+
+    @Override
+    public void guardar(Mensaje m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
