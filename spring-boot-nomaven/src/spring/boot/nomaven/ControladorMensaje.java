@@ -39,15 +39,30 @@ public class ControladorMensaje {
     }
     
     
-       @CrossOrigin
-    @RequestMapping(value="/mensajemongo", method=RequestMethod.GET, headers = {"Accept=text/html"})
-    @ResponseBody String guardar()throws Exception{
+     @CrossOrigin
+    @RequestMapping(value="/mensajemongo/{titulo}/{cuerpo}", method=RequestMethod.GET, headers = {"Accept=text/html"})
+    @ResponseBody String guardar(@PathVariable String titulo, @PathVariable String cuerpo)throws Exception{
      MensajeMongutio m=new MensajeMongutio();
-     m.setCuerpo("hoy");
-     m.setTitulo("hizo calor");
+     m.setCuerpo(titulo);
+     m.setTitulo(cuerpo);
     mensajesMongo.agregarMensaje(m);
      return "Guardado con exito";
     }
+    
+    @CrossOrigin
+    @RequestMapping(value="/mensajemongo", method=RequestMethod.GET,
+            headers = {"Accept=application/json"})
+    @ResponseBody String leerTodos()throws Exception{
+        
+        ArrayList<MensajeMongutio> mensajes=(ArrayList<MensajeMongutio>) mensajesMongo.getTodos();
+        ObjectMapper maper=new ObjectMapper();
+        return maper.writeValueAsString(mensajes);
+    
+    }
+    
+    
+    
+    
      @CrossOrigin
     @RequestMapping(value = "/mensaje/{titulo}/{cuerpo}",
             method = RequestMethod.POST, headers = {"Accept=text/html"})
@@ -60,6 +75,8 @@ public class ControladorMensaje {
         return "Mensaje guardado con exito";
         
     }
+    
+    
     
     
     

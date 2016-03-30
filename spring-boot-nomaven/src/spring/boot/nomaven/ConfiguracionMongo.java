@@ -22,7 +22,8 @@ public class ConfiguracionMongo extends AbstractMongoConfiguration{
 
     @Bean
     public SimpleMongoDbFactory mongoDbFactory()throws Exception{
-MongoURI uri=new MongoURI("mongodb://usuario:usuario@ds053188.mlab.com:53188/soluciones-moviles");
+MongoURI uri=new 
+MongoURI("mongodb://usuario:usuario@ds053188.mlab.com:53188/soluciones-moviles");
         return new SimpleMongoDbFactory(uri);
     }
 
