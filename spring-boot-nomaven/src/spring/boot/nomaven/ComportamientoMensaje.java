@@ -14,6 +14,10 @@ import java.util.List;
  */
 public interface ComportamientoMensaje {
     
-  List<Mensaje>    leerTodosLosMensajes();
+  public List<Mensaje>    leerTodosLosMensajes();
   public void guardar(Mensaje m);
+  public Mensaje  obtenerMensajePorID(Integer id);
+  public void actualizarMensaje(Mensaje m);
+  public void borrarMensaje(Integer id);
+  
 }

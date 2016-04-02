@@ -37,5 +37,37 @@ public class MensajeMysql extends Mensaje implements ComportamientoMensaje{
             Logger.getLogger(MensajeMysql.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public Mensaje obtenerMensajePorID(Integer id){
+     DAOMensaje dao=new DAOMensaje();
+     Mensaje mensaje=new Mensaje();
+        try {
+           mensaje=    dao.buscarPorId(id);
+        } catch (Exception ex) {
+            Logger.getLogger(MensajeMysql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mensaje;
+    }
+
+    @Override
+    public void actualizarMensaje(Mensaje m){
+    DAOMensaje dao=new DAOMensaje();
+        try {
+            dao.actualizar(m);
+        } catch (Exception ex) {
+            Logger.getLogger(MensajeMysql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void borrarMensaje(Integer id){
+      DAOMensaje dao=new DAOMensaje();
+        try {
+            dao.borrar(id);
+        } catch (Exception ex) {
+            Logger.getLogger(MensajeMysql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

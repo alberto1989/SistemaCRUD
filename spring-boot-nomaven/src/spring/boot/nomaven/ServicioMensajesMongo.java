@@ -32,4 +32,6 @@ public class ServicioMensajesMongo {
         mensajes=mongoTemplate.findAll(MensajeMongutio.class);
         return mensajes;
     }
+    
+    
 }

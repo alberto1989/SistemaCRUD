@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/")
 public class ControladorMensaje {
     @Autowired ComportamientoMensaje miServicioMensaje;
-    @Inject ServicioMensajesMongo mensajesMongo;
+
  
     
     @CrossOrigin
@@ -38,27 +38,30 @@ public class ControladorMensaje {
    
     }
     
-    
-     @CrossOrigin
-    @RequestMapping(value="/mensajemongo/{titulo}/{cuerpo}", method=RequestMethod.GET, headers = {"Accept=text/html"})
-    @ResponseBody String guardar(@PathVariable String titulo, @PathVariable String cuerpo)throws Exception{
-     MensajeMongutio m=new MensajeMongutio();
-     m.setCuerpo(titulo);
-     m.setTitulo(cuerpo);
-    mensajesMongo.agregarMensaje(m);
-     return "Guardado con exito";
+    @CrossOrigin
+    @RequestMapping(value="/mensaje/{id}", method=RequestMethod.GET, headers = {"Accept=application/json"})
+    @ResponseBody String obtenerPorId(@PathVariable Integer id)throws Exception{
+     
+     ObjectMapper maper=new ObjectMapper();
+   Mensaje mensajito=   miServicioMensaje.obtenerMensajePorID(id);
+   return maper.writeValueAsString(mensajito);
+   
     }
     
     @CrossOrigin
-    @RequestMapping(value="/mensajemongo", method=RequestMethod.GET,
-            headers = {"Accept=application/json"})
-    @ResponseBody String leerTodos()throws Exception{
-        
-        ArrayList<MensajeMongutio> mensajes=(ArrayList<MensajeMongutio>) mensajesMongo.getTodos();
-        ObjectMapper maper=new ObjectMapper();
-        return maper.writeValueAsString(mensajes);
-    
+    @RequestMapping(value="/mensaje/{id}/{titulo}/{cuerpo}", method=RequestMethod.PUT, headers = {"Accept=text/html"})
+    @ResponseBody String obtenerPorId(@PathVariable Integer id,
+            @PathVariable String titulo, @PathVariable String cuerpo)throws Exception{
+     Mensaje m=new Mensaje();
+             m.setId(id);
+             m.setTitulo(titulo);
+             m.setCuerpo(cuerpo);
+     miServicioMensaje.actualizarMensaje(m);
+   return "Mensaje actualizado con exito";
+   
     }
+    
+  
     
     
     
