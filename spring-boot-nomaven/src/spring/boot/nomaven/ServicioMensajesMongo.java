@@ -25,7 +25,7 @@ public class ServicioMensajesMongo {
             mongoTemplate.createCollection(MensajeMongutio.class);
         }
         mongoTemplate.insert(mongutio);
-    }
+    }  
 
     public List<MensajeMongutio> getTodos(){
    List<MensajeMongutio> mensajes=new ArrayList<MensajeMongutio>();

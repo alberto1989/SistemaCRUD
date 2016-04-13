@@ -16,25 +16,39 @@ import org.springframework.stereotype.Repository;
  * @author campitos
  */
 @Repository
-public class MensajeMongutio extends Mensaje{
+public class MensajeMongutio{
    
    
 @Id
-private String idd;
+private String id;
 
-    /**
-     * @return the id
-     */
-    public String getIdd() {
-        return idd;
+private String titulo;
+private String cuerpo;
+
+    public String getTitulo() {
+        return titulo;
     }
 
-    /**
-     * @param id the id to set
-     */
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getCuerpo() {
+        return cuerpo;
+    }
+
+    public void setCuerpo(String cuerpo) {
+        this.cuerpo = cuerpo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
     public void setId(String id) {
-        this.idd = id;
+        this.id = id;
     }
+
 
     
 
